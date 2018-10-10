@@ -1,13 +1,21 @@
 import React from "react";
-import { View, StyleSheet, TextInput, Text, SectionList, Item, Section } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Text,
+  SectionList,
+  Item,
+  Section
+} from "react-native";
 import { MapView } from "expo";
 import { Callout } from "react-native-maps";
 import { EvilIcons } from "@expo/vector-icons";
 import Spinner from "react-native-loading-spinner-overlay";
 
-    var A = ['Apple', 'Apricot', 'Avocado'] ;
-    var B = ['Banana', 'Blackberry', 'Blackcurrant', 'Blueberry', 'Boysenberry'] ;
-    var C = ['Cherry', 'Coconut'] ;
+var A = ["Apple", "Apricot", "Avocado"];
+var B = ["Banana", "Blackberry", "Blackcurrant", "Blueberry", "Boysenberry"];
+var C = ["Cherry", "Coconut"];
 
 export default class LinksScreen extends React.Component {
   constructor(props) {
@@ -35,38 +43,36 @@ export default class LinksScreen extends React.Component {
   }
 
   GetSectionListItem() {
-    console.log('function getSection')
+    console.log("function getSection");
   }
 
-  _renderItem = ({ section, index }) => {
-    // const { numColumns } = this.props;
-    const numColumns = 2;
-
-    if (index % numColumns !== 0) return null;
-
-    const items = [];
-
-    // for (let i = index; i < index + numColumns; i++) {
-    //   if (i >= section.data.length) {
-    //     break;
-    //   }
-    //
-    //   items.push(<Item item={section.data[i]} />);
-    // }
-
-    return (
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between"
-        }}
-      >
-        <Text>items</Text>
-      </View>
-    );
-  }
-
-  _renderSection = (data, index, section) => (<Text>{section.title}</Text>);
+  // _renderItem = ({ section, index }) => {
+  //   // const { numColumns } = this.props;
+  //   const numColumns = 2;
+  //
+  //   if (index % numColumns !== 0) return null;
+  //
+  //   const items = [];
+  //
+  //   // for (let i = index; i < index + numColumns; i++) {
+  //   //   if (i >= section.data.length) {
+  //   //     break;
+  //   //   }
+  //   //
+  //   //   items.push(<Item item={section.data[i]} />);
+  //   // }
+  //
+  //   return (
+  //     <View
+  //       style={{
+  //         flexDirection: "row",
+  //         justifyContent: "space-between"
+  //       }}
+  //     >
+  //       <Text>items</Text>
+  //     </View>
+  //   );
+  // };
 
   render() {
     return (
@@ -110,21 +116,19 @@ export default class LinksScreen extends React.Component {
         </Callout>
         <View style={{ flex: 0.5 }}>
           <SectionList
-
-          sections={[
-
-            { title: 'Título A', data: A },
-            { title: 'Título B', data: B },
-            { title: 'Título C', data: C },
-
-          ]}
-
-          renderSectionHeader={this._renderSection}
-
-          renderItem={({item, index, section}) => <Text key={index}>{item}</Text>}
-
-
-        />
+            renderItem={({ item, index, section }) => (
+              <Text key={index}>{item}</Text>
+            )}
+            renderSectionHeader={({ section: { title } }) => (
+              <Text style={{ fontWeight: "bold" }}>{title}</Text>
+            )}
+            sections={[
+              { title: "Title1", data: ["item1", "item2"] },
+              { title: "Title2", data: ["item3", "item4"] },
+              { title: "Title3", data: ["item5", "item6"] }
+            ]}
+            keyExtractor={(item, index) => item + index}
+          />
         </View>
       </View>
     );
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     marginRight: "70%",
     borderColor: "black",
-    borderWidth: 1,
+    borderWidth: 1
   },
   calloutSearch: {
     borderColor: "transparent",
@@ -156,20 +160,17 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 0.0
   },
-  SectionHeaderStyle:{
-
-    backgroundColor : '#CDDC39',
-    fontSize : 20,
+  SectionHeaderStyle: {
+    backgroundColor: "#CDDC39",
+    fontSize: 20,
     padding: 5,
-    color: '#fff',
+    color: "#fff"
   },
 
-  SectionListItemStyle:{
-
-    fontSize : 15,
+  SectionListItemStyle: {
+    fontSize: 15,
     padding: 5,
-    color: '#000',
-    backgroundColor : '#F5F5F5'
-
+    color: "#000",
+    backgroundColor: "#F5F5F5"
   }
 });
